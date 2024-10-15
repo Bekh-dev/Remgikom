@@ -178,6 +178,96 @@ body {
           flex: 1 1 auto;
 }
 
+.gidro {
+  padding-top: 20px;
+}
+.gidro__box {
+  background: url("../img/gidro/main-bg.jpeg") center/cover no-repeat;
+  border-radius: 16px;
+  padding: clamp(30px, 5vw, 80px) clamp(20px, 5vw, 40px);
+}
+@media (min-width: 479.98px) {
+  .gidro__box {
+    position: relative;
+    overflow: hidden;
+  }
+  .gidro__box:after {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(4, 89, 224, 0.8);
+    clip-path: polygon(0 0, 55% 0%, 95% 100%, 0% 100%);
+  }
+}
+@media (max-width: 767.98px) {
+  .gidro__box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+.gidro__content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  max-width: 390px;
+}
+@media (max-width: 767.98px) {
+  .gidro__content {
+    text-align: center;
+  }
+}
+@media (max-width: 479.98px) {
+  .gidro__content {
+    background-color: rgba(4, 89, 224, 0.9);
+    border-radius: 16px;
+    padding: 30px 20px;
+  }
+}
+.gidro__title {
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: 500;
+  line-height: 142.8571428571%;
+  margin-bottom: 10px;
+}
+.gidro__text {
+  margin-bottom: 20px;
+  font-size: clamp(16px, 5vw, 18px);
+  line-height: 166.6666666667%;
+}
+.gidro__btn {
+  display: inline-block;
+  border-radius: 16px;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 102, 255, 0.25);
+          box-shadow: 0px 0px 6px 0px rgba(0, 102, 255, 0.25);
+  background: rgb(255, 255, 255);
+  padding: 12px 40px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  text-align: center;
+  color: #0459e0;
+  font-size: 16px;
+  font-weight: 600;
+}
+@media (any-hover: hover) {
+  .gidro__btn:hover {
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+    color: #13151a;
+  }
+}
+@media (max-width: 479.98px) {
+  .gidro__btn {
+    width: 100%;
+  }
+}
+
 .services {
   padding-top: clamp(30px, 5vw, 70px);
   padding-bottom: clamp(30px, 5vw, 70px);
