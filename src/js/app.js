@@ -1,3 +1,7 @@
-import * as flsFunctions from './modules/functions.js';
+import { isWebp } from './modules/functions.js';
+import { addMenuBurger } from './modules/header.js';
 
-flsFunctions.isWebp();
+document.addEventListener('DOMContentLoaded', () => {
+	isWebp();
+	addMenuBurger();
+});
