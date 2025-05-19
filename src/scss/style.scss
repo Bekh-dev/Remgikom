@@ -1,0 +1,148 @@
+// Обнуление и Переменные
+@use 'abstracts' as *;
+//---------------------------------------------------------------------------
+
+// Подключение файлов стилей страниц и элементов
+@use 'layout';
+//---------------------------------------------------------------------------
+// Шрифты
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Inter:wght@500;600&display=swap&subset=cyrillic-ext');
+//---------------------------------------------------------------------------
+
+//Общие параметры
+body {
+	font-size: 16px;
+	color: $main-color;
+	&.menu-open {
+		overflow: hidden;
+	}
+}
+//---------------------------------------------------------------------------
+
+// Оболочка
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+.page {
+	flex: 1 1 auto;
+}
+//---------------------------------------------------------------------------
+
+// Основная сетка
+._container {
+	max-width: $mw + px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+//---------------------------------------------------------------------------
+
+// Основная страница
+.work {
+	background-color: #e8efff;
+	padding-top: clamp(30px, 10vw, 70px);
+	padding-bottom: clamp(30px, 10vw, 70px);
+	&__container {
+	}
+
+	&__block {
+	}
+
+	&__title {
+		@include title;
+		margin-bottom: clamp(20px, 5vw, 40px);
+	}
+
+	&__cells {
+	}
+}
+
+.cells-work {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 30px;
+
+	&__box {
+		border-radius: 20px;
+		box-shadow: 0px 0px 0px 1px rgba(8, 60, 130, 0.06);
+		background: #fff;
+		padding: 30px;
+	}
+
+	&__value {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-weight: 600;
+		margin-bottom: clamp(10px, 10vw, 15px);
+	}
+
+	&__num {
+		border-radius: 16px;
+		background: #b7d6ff;
+		padding: 16px 23px;
+
+		color: $blue;
+		font-size: 28px;
+	}
+
+	&__title {
+		color: #343f52;
+		font-size: clamp(20px, 5vw, 24px);
+		line-height: calc(30px / 24px * 100%);
+	}
+
+	&__text {
+		font-weight: 500;
+		line-height: calc(28px / 16px * 100%);
+	}
+}
+//---------------------------------------------------------------------------
+.about {
+	padding-top: clamp(50px, 10vw, 120px);
+	&__container {
+	}
+
+	&__body {
+		display: flex;
+		gap: 60px;
+	}
+
+	&__content {
+		flex: 0 1 35%;
+		@media (max-width: $md3+px) {
+			flex: 1 1 auto;
+		}
+	}
+
+	&__title {
+		@include title;
+		margin-bottom: 20px;
+	}
+
+	&__text {
+		font-size: 18px;
+		line-height: calc(36px / 18px * 100%);
+		margin-bottom: 20px;
+		span {
+			font-weight: 500;
+			color: $blue;
+		}
+	}
+
+	&__btn {
+		@include btn;
+	}
+
+	&__img {
+		flex: 0 1 60%;
+		@include img;
+		@media (max-width: $md3+px) {
+			display: none;
+		}
+	}
+}
+//---------------------------------------------------------------------------
