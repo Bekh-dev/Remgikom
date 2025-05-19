@@ -41,6 +41,94 @@ body {
 //---------------------------------------------------------------------------
 
 // Основная страница
+.main-block {
+	margin: 20px 0px 0px 0px;
+	&__container {
+	}
+
+	&__block {
+		padding: 80px 0px 80px 40px;
+		background: url('@img/main-block/bg.jpg') center 85% / cover no-repeat;
+		color: #fff;
+		border-radius: 16px;
+		@media (max-width: $md3+px) {
+			padding: 80px 15px;
+		}
+		@media (max-width: $md4+px) {
+			padding: 15px;
+		}
+		@media (min-width: $md4+px) {
+			position: relative;
+			overflow: hidden;
+			&::after {
+				content: '';
+				position: absolute;
+				width: 700px;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background: rgba(4, 89, 224, 0.9);
+				-webkit-clip-path: polygon(0 0, 55% 0%, 95% 100%, 0% 100%);
+				clip-path: polygon(0 0, 55% 0%, 95% 100%, 0% 100%);
+			}
+		}
+		@media (max-width: $md3+px) {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+	}
+
+	&__content {
+		position: relative;
+		z-index: 4;
+		max-width: 390px;
+		> *:not(:last-child) {
+			margin-bottom: 20px;
+		}
+		@media (max-width: $md4+px) {
+			background-color: $blue;
+			padding: 30px 20px;
+			border-radius: 16px;
+			opacity: 0.9;
+		}
+	}
+
+	&__title {
+		font-family: $fontSub;
+		font-size: clamp(20px, 5vw, 28px);
+		font-weight: 500;
+		line-height: calc(40px / 28px * 100%);
+	}
+
+	&__text {
+		font-size: clamp(16px, 5vw, 18px);
+		line-height: calc(30px / 18px * 100%);
+	}
+
+	&__btn {
+		display: inline-block;
+		padding: 12px 40px;
+		border-radius: 16px;
+		box-shadow: 0px 0px 6px 0px rgba(0, 102, 255, 0.25);
+		background: #ffffff;
+
+		color: $blue;
+		font-size: 16px;
+		font-weight: 600;
+		text-align: center;
+		transition: all 0.3s ease;
+
+		@media (any-hover: hover) {
+			&:hover {
+				box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+				color: #13151a;
+			}
+		}
+	}
+}
+//---------------------------------------------------------------------------
 .work {
 	background-color: #e8efff;
 	padding-top: clamp(30px, 10vw, 70px);
