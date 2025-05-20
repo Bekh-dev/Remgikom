@@ -1,0 +1,107 @@
+@use 'abstracts' as *;
+//--------------------------------------------------------
+.faq {
+	padding-top: clamp(50px, 10vw, 100px);
+	padding-bottom: clamp(30px, 10vw, 50px);
+	&__wrapper {
+		display: flex;
+		gap: 200px;
+		@media (max-width: $md2+px) {
+			flex-direction: column-reverse;
+			gap: 50px;
+		}
+	}
+
+	&__left {
+		flex: 1 0 23.3%;
+		> *:not(:last-child) {
+			margin-bottom: 10px;
+		}
+		background: url('@./../../img/faq/logo-bg.svg') bottom left / contain
+			no-repeat;
+		@media (max-width: $md2+px) {
+			padding-bottom: 383px;
+			max-width: 280px;
+		}
+		@media (max-width: $md3+px) {
+			padding: 0;
+			background: none;
+		}
+	}
+
+	&__title {
+		@include title;
+	}
+
+	&__text {
+		color: rgba(19, 21, 26, 0.5);
+		font-size: 18px;
+	}
+
+	&__btn {
+		@include btn;
+	}
+
+	&__spoller {
+		flex: 1 1 60%;
+	}
+}
+
+.spoller {
+	&__item {
+		margin-bottom: 15px;
+	}
+
+	&__title {
+		border-radius: 4px;
+		box-shadow: 0px 0px 0px 1px rgba(8, 60, 130, 0.1);
+		font-size: clamp(15px, 5vw, 18px);
+		font-weight: 500;
+		line-height: calc(30px / 18px * 100%);
+		padding: 10px 20px;
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__icon {
+		display: inline-block;
+		flex: 0 0 10px;
+		width: 10px;
+		height: 10px;
+		border-right: 2.67px solid $blue;
+		border-bottom: 2.67px solid $blue;
+		transform: rotate(45deg);
+		transform-origin: center;
+		transition: transform 0.3s, border-color 0.3s;
+		margin-left: 20px;
+	}
+
+	&__body {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.3s ease;
+	}
+
+	&__answers {
+		border-radius: 4px;
+		box-shadow: 0px 0px 0px 1px rgba(8, 60, 130, 0.1);
+		background: rgb(232, 239, 255);
+		padding: 10px 20px;
+		margin-top: 5px;
+		font-size: clamp(14px, 5vw, 17px);
+		line-height: calc(32px / 17px * 100%);
+	}
+
+	&__item.active {
+		.spoller__icon {
+			transform: rotate(225deg);
+			border-color: #4b525c;
+		}
+
+		.spoller__body {
+			max-height: 500px;
+		}
+	}
+}

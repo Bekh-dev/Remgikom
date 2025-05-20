@@ -1,0 +1,19 @@
+@use './variables';
+@use './mixins';
+//------------------------------------------------------------
+.top-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	&__title {
+		@include mixins.title;
+		@media (max-width: variables.$md4+px) {
+			font-size: 18px;
+		}
+	}
+
+	&__btn {
+		@include mixins.btn;
+	}
+}
