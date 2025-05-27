@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	@@include('html/head.html', { "title": "Услуги" })
+	<body>
+		<div class="wrapper">
+			@@include('html/header.html', { "link": "3" })
+			<main class="page">
+				<section class="contacts">
+					<div class="contacts__container _container">
+						<h1 class="contacts__title">Контакты</h1>
+						<div class="contacts__body">
+							<div class="contacts__content">
+								<h2 class="contacts__sub-title">
+									Остававьте заявку или перезвоните нам сами!
+								</h2>
+								<div class="contacts__info">
+									<a href="tel:+74952972766" class="contacts__link _tel"
+										><img
+											src="img/icons/icon-tel-header.svg"
+											alt="Иконка телефона"
+										/>+7 (495) 297 27-66</a
+									>
+									<a href="mailto:info@remgikom.ru" class="contacts__link _mail"
+										><img
+											src="img/icons/icon-mail-header.svg"
+											alt="Иконка Email"
+										/>info@remgikom.ru</a
+									>
+								</div>
+								<a href="#" class="contacts__btn">Связаться с нами!</a>
+							</div>
+							<div class="contacts__img">
+								<img src="img//faq/logo-bg.svg" alt="Логотип" />
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+			@@include('html/footer.html', {})
+		</div>
+		<script src="js/app.min.js"></script>
+	</body>
+</html>

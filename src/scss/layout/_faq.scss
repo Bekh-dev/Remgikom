@@ -4,16 +4,21 @@
 	padding-top: clamp(50px, 10vw, 100px);
 	padding-bottom: clamp(30px, 10vw, 50px);
 	&__wrapper {
-		display: flex;
+		display: grid;
+		grid-template: 1fr / repeat(2, auto);
 		gap: 200px;
 		@media (max-width: $md2+px) {
-			flex-direction: column-reverse;
 			gap: 50px;
+			grid-template: 1fr auto/ 1fr;
+			.grid {
+				grid-template-areas:
+					'row2'
+					'row1';
+			}
 		}
 	}
 
 	&__left {
-		flex: 1 0 23.3%;
 		> *:not(:last-child) {
 			margin-bottom: 10px;
 		}
@@ -22,10 +27,12 @@
 		@media (max-width: $md2+px) {
 			padding-bottom: 383px;
 			max-width: 280px;
+			grid-row: 2;
 		}
 		@media (max-width: $md3+px) {
 			padding: 0;
 			background: none;
+			max-width: 100%;
 		}
 	}
 
@@ -40,10 +47,15 @@
 
 	&__btn {
 		@include btn;
+		@media (max-width: $md4+px) {
+			width: 100%;
+		}
 	}
 
 	&__spoller {
-		flex: 1 1 60%;
+		@media (max-width: $md2+px) {
+			grid-row: 1;
+		}
 	}
 }
 

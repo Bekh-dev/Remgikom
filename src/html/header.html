@@ -35,13 +35,19 @@
 					</button>
 					<nav class="menu__body">
 						<ul class="menu__list">
-							<li><a href="#" class="menu__link _act">Главная</a></li>
-							<li><a href="#" class="menu__link">Услуги</a></li>
+							<li>
+								<a href="#" class="menu__link @@if(link==1){_act}">Главная</a>
+							</li>
+							<li>
+								<a href="#" class="menu__link @@if(link==2){_act}">Услуги</a>
+							</li>
 							<li>
 								<a href="#" class="menu__link" data-goto=".about">О компании</a>
 							</li>
 							<li><a href="#" class="menu__link">Наши проекты</a></li>
-							<li><a href="#" class="menu__link">Контакты</a></li>
+							<li>
+								<a href="#" class="menu__link @@if(link==3){_act}">Контакты</a>
+							</li>
 						</ul>
 						<div class="menu__contacts contacts-header">
 							<a href="tel:+74952972766" class="contacts-header__tel"

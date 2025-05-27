@@ -4,6 +4,7 @@
 
 // Подключение файлов стилей страниц и элементов
 @use 'layout';
+@use 'page';
 //---------------------------------------------------------------------------
 // Шрифты
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Inter:wght@500;600&display=swap&subset=cyrillic-ext');
@@ -203,7 +204,6 @@ body {
 	&__cells {
 	}
 }
-
 .cells-work {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -245,6 +245,61 @@ body {
 	}
 }
 //---------------------------------------------------------------------------
+.projects {
+	padding-top: clamp(50px, 10vw, 70px);
+	&__colums {
+		display: grid;
+		gap: 30px;
+		grid-template: 1fr / 1.16fr 1.6fr 1.8fr;
+
+		@media (max-width: 1000px) {
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			grid-template: 1fr / repeat(3, 320px);
+			margin-right: -20px;
+		}
+
+		@media (max-width: 767.98px) {
+			grid-template: 1fr / repeat(3, 290px);
+		}
+	}
+
+	&__column {
+	}
+
+	.item-projects {
+		height: 100%;
+		display: grid;
+		grid-template: auto 1fr / 1fr;
+		gap: 20px;
+		&__img {
+			position: relative;
+			padding: 0px 0px 420px 0px;
+			img {
+				@include img;
+			}
+		}
+
+		&__content {
+			padding-left: 14px;
+			border-left: 4px solid #0459e0;
+		}
+
+		&__title {
+			margin: 0px 0px 10px 0px;
+			color: #13151a;
+			font-size: 20px;
+			font-weight: 600;
+		}
+
+		&__text {
+			color: #5a5a5a;
+			font-size: 16px;
+		}
+	}
+}
+
+//---------------------------------------------------------------------------
 .about {
 	padding-top: clamp(50px, 10vw, 120px);
 	&__container {
@@ -279,6 +334,9 @@ body {
 
 	&__btn {
 		@include btn;
+		@media (max-width: $md4+px) {
+			width: 100%;
+		}
 	}
 
 	&__img {
