@@ -4,31 +4,58 @@ export function addMenuBurger() {
 	function documentActions(event) {
 		const target = event.target;
 
+		// Открытие/закрытие меню
 		if (target.closest('.icon-menu')) {
 			document.body.classList.toggle('menu-open');
 		}
 
+		// Обработка ссылок с якорем
 		if (target.closest('[data-goto]')) {
+			const gotoLink = target.closest('[data-goto]');
+			const gotoSelector = gotoLink.dataset.goto;
+			const gotoBlock = document.querySelector(gotoSelector);
+
+			// Закрываем меню
 			if (document.body.classList.contains('menu-open')) {
 				document.body.classList.remove('menu-open');
 			}
 
-			const gotoSelector = target.closest('[data-goto]').dataset.goto;
-			const gotoBlock = document.querySelector(gotoSelector);
-			const headerHeight = document.querySelector('.header').offsetHeight;
-
 			if (gotoBlock) {
+				const headerHeight =
+					document.querySelector('.header')?.offsetHeight || 0;
+				const gotoBlockTop =
+					gotoBlock.getBoundingClientRect().top + window.scrollY - headerHeight;
+
 				window.scrollTo({
-					top: gotoBlock.offsetTop,
+					top: gotoBlockTop,
 					behavior: 'smooth',
 				});
+			} else {
+				window.location.href = `/#${gotoSelector.replace('.', '')}`;
 			}
 
 			event.preventDefault();
 		}
 
-		// Если нажали на кнопку "Связаться с нами", сначала закрываем меню, потом открываем модалку
-		/*if (target.closest('[data-modal]')) {
+		// 👉 Закрываем меню при переходе по обычным ссылкам
+		if (target.closest('.menu__link') && !target.closest('[data-goto]')) {
+			if (document.body.classList.contains('menu-open')) {
+				document.body.classList.remove('menu-open');
+			}
+		}
+	}
+
+	// Безопасно закрываем меню при загрузке и возврате назад
+	window.addEventListener('DOMContentLoaded', () => {
+		document.body.classList.remove('menu-open');
+	});
+	window.addEventListener('popstate', () => {
+		document.body.classList.remove('menu-open');
+	});
+}
+
+// Если нажали на кнопку "Связаться с нами", сначала закрываем меню, потом открываем модалку
+/*if (target.closest('[data-modal]')) {
 				if (document.body.classList.contains('menu-open')) {
 					document.body.classList.remove('menu-open');
 					setTimeout(() => {
@@ -38,5 +65,3 @@ export function addMenuBurger() {
 				}
 			}
 		*/
-	}
-}
