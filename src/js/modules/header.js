@@ -1,67 +1,69 @@
+// modules/header.js
 export function addMenuBurger() {
 	document.addEventListener('click', documentActions);
 
 	function documentActions(event) {
 		const target = event.target;
 
-		// Открытие/закрытие меню
 		if (target.closest('.icon-menu')) {
 			document.body.classList.toggle('menu-open');
 		}
 
-		// Обработка ссылок с якорем
 		if (target.closest('[data-goto]')) {
 			const gotoLink = target.closest('[data-goto]');
-			const gotoSelector = gotoLink.dataset.goto;
+			const gotoSelector = gotoLink.dataset.goto; // ".about"
 			const gotoBlock = document.querySelector(gotoSelector);
 
-			// Закрываем меню
-			if (document.body.classList.contains('menu-open')) {
-				document.body.classList.remove('menu-open');
-			}
+			closeMenu();
 
 			if (gotoBlock) {
-				const headerHeight =
-					document.querySelector('.header')?.offsetHeight || 0;
-				const gotoBlockTop =
-					gotoBlock.getBoundingClientRect().top + window.scrollY - headerHeight;
+				const headerH = document.querySelector('.header')?.offsetHeight || 0;
+				const top =
+					gotoBlock.getBoundingClientRect().top + window.scrollY - headerH;
 
-				window.scrollTo({
-					top: gotoBlockTop,
-					behavior: 'smooth',
-				});
+				window.scrollTo({ top, behavior: 'smooth' });
 			} else {
 				window.location.href = `/#${gotoSelector.replace('.', '')}`;
 			}
 
 			event.preventDefault();
+			return;
 		}
 
-		// 👉 Закрываем меню при переходе по обычным ссылкам
-		if (target.closest('.menu__link') && !target.closest('[data-goto]')) {
-			if (document.body.classList.contains('menu-open')) {
-				document.body.classList.remove('menu-open');
+		if (target.closest('.popup-link')) {
+			const wasOpen = closeMenu();
+
+			const popupId = target
+				.closest('.popup-link')
+				.getAttribute('href')
+				.replace('#', '');
+			const popup = document.getElementById(popupId);
+
+			if (popup) {
+				setTimeout(
+					() => {
+						popup.classList.add('open');
+						document.body.classList.add('lock');
+					},
+					wasOpen ? 300 : 0
+				);
 			}
+
+			event.preventDefault();
+			return;
 		}
+
+		if (target.closest('.menu__link')) closeMenu();
 	}
 
-	// Безопасно закрываем меню при загрузке и возврате назад
-	window.addEventListener('DOMContentLoaded', () => {
-		document.body.classList.remove('menu-open');
-	});
-	window.addEventListener('popstate', () => {
-		document.body.classList.remove('menu-open');
-	});
-}
+	function closeMenu() {
+		if (document.body.classList.contains('menu-open')) {
+			document.body.classList.remove('menu-open');
+			return true;
+		}
+		return false;
+	}
 
-// Если нажали на кнопку "Связаться с нами", сначала закрываем меню, потом открываем модалку
-/*if (target.closest('[data-modal]')) {
-				if (document.body.classList.contains('menu-open')) {
-					document.body.classList.remove('menu-open');
-					setTimeout(() => {
-						target.click(); // Повторный клик по кнопке, чтобы сработал modal.js
-					}, 200);
-					event.preventDefault();
-				}
-			}
-		*/
+	window.addEventListener('load', closeMenu);
+	window.addEventListener('popstate', closeMenu);
+}

@@ -17,12 +17,15 @@ body {
 	&.menu-open {
 		overflow: hidden;
 	}
+	&.lock {
+		overflow: hidden;
+	}
 }
 //---------------------------------------------------------------------------
 
 // Оболочка
 .wrapper {
-	width: 100%;
+	width: 100vw;
 	min-height: 100%;
 	overflow: hidden;
 	display: flex;
